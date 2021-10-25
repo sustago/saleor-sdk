@@ -499,6 +499,18 @@ export interface ProductDetails_product_images {
   url: string;
 }
 
+export interface ProductDetails_product_attributes_attribute_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface ProductDetails_product_attributes_attribute {
   __typename: "Attribute";
   /**
@@ -513,6 +525,10 @@ export interface ProductDetails_product_attributes_attribute {
    * Internal representation of an attribute name.
    */
   slug: string | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (ProductDetails_product_attributes_attribute_metadata | null)[];
 }
 
 export interface ProductDetails_product_attributes_values {
