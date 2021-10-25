@@ -9,6 +9,62 @@ import { CountryCode, VariantAttributeScope } from "./../../gqlTypes/globalTypes
 // GraphQL query operation: ProductDetails
 // ====================================================
 
+export interface ProductDetails_product_attributes_attribute_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
+export interface ProductDetails_product_attributes_attribute {
+  __typename: "Attribute";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Internal representation of an attribute name.
+   */
+  slug: string | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (ProductDetails_product_attributes_attribute_metadata | null)[];
+}
+
+export interface ProductDetails_product_attributes_values {
+  __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+}
+
+export interface ProductDetails_product_attributes {
+  __typename: "SelectedAttribute";
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  attribute: ProductDetails_product_attributes_attribute;
+  /**
+   * Values of an attribute.
+   */
+  values: (ProductDetails_product_attributes_values | null)[];
+}
+
 export interface ProductDetails_product_thumbnail {
   __typename: "Image";
   /**
@@ -211,6 +267,62 @@ export interface ProductDetails_product_pricing {
    * The discounted price range of the product variants.
    */
   priceRange: ProductDetails_product_pricing_priceRange | null;
+}
+
+export interface ProductDetails_product_category_products_edges_node_attributes_attribute_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
+export interface ProductDetails_product_category_products_edges_node_attributes_attribute {
+  __typename: "Attribute";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  name: string | null;
+  /**
+   * Internal representation of an attribute name.
+   */
+  slug: string | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (ProductDetails_product_category_products_edges_node_attributes_attribute_metadata | null)[];
+}
+
+export interface ProductDetails_product_category_products_edges_node_attributes_values {
+  __typename: "AttributeValue";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * Name of a value displayed in the interface.
+   */
+  name: string | null;
+}
+
+export interface ProductDetails_product_category_products_edges_node_attributes {
+  __typename: "SelectedAttribute";
+  /**
+   * Name of an attribute displayed in the interface.
+   */
+  attribute: ProductDetails_product_category_products_edges_node_attributes_attribute;
+  /**
+   * Values of an attribute.
+   */
+  values: (ProductDetails_product_category_products_edges_node_attributes_values | null)[];
 }
 
 export interface ProductDetails_product_category_products_edges_node_thumbnail {
@@ -446,6 +558,10 @@ export interface ProductDetails_product_category_products_edges_node {
   availableForPurchase: any | null;
   seoTitle: string | null;
   /**
+   * List of attributes assigned to this product.
+   */
+  attributes: ProductDetails_product_category_products_edges_node_attributes[];
+  /**
    * The main thumbnail for a product.
    */
   thumbnail: ProductDetails_product_category_products_edges_node_thumbnail | null;
@@ -497,62 +613,6 @@ export interface ProductDetails_product_images {
    * The URL of the image.
    */
   url: string;
-}
-
-export interface ProductDetails_product_attributes_attribute_metadata {
-  __typename: "MetadataItem";
-  /**
-   * Key of a metadata item.
-   */
-  key: string;
-  /**
-   * Value of a metadata item.
-   */
-  value: string;
-}
-
-export interface ProductDetails_product_attributes_attribute {
-  __typename: "Attribute";
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  /**
-   * Name of an attribute displayed in the interface.
-   */
-  name: string | null;
-  /**
-   * Internal representation of an attribute name.
-   */
-  slug: string | null;
-  /**
-   * List of public metadata items. Can be accessed without permissions.
-   */
-  metadata: (ProductDetails_product_attributes_attribute_metadata | null)[];
-}
-
-export interface ProductDetails_product_attributes_values {
-  __typename: "AttributeValue";
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  /**
-   * Name of a value displayed in the interface.
-   */
-  name: string | null;
-}
-
-export interface ProductDetails_product_attributes {
-  __typename: "SelectedAttribute";
-  /**
-   * Name of an attribute displayed in the interface.
-   */
-  attribute: ProductDetails_product_attributes_attribute;
-  /**
-   * Values of an attribute.
-   */
-  values: (ProductDetails_product_attributes_values | null)[];
 }
 
 export interface ProductDetails_product_variants_images {
@@ -748,6 +808,10 @@ export interface ProductDetails_product {
   availableForPurchase: any | null;
   seoTitle: string | null;
   /**
+   * List of attributes assigned to this product.
+   */
+  attributes: ProductDetails_product_attributes[];
+  /**
    * The main thumbnail for a product.
    */
   thumbnail: ProductDetails_product_thumbnail | null;
@@ -765,10 +829,6 @@ export interface ProductDetails_product {
    * List of images for the product.
    */
   images: (ProductDetails_product_images | null)[] | null;
-  /**
-   * List of attributes assigned to this product.
-   */
-  attributes: ProductDetails_product_attributes[];
   /**
    * List of variants for the product.
    */
