@@ -1323,6 +1323,7 @@ export interface ProductFilterInput {
   stocks?: ProductStockFilterInput | null;
   search?: string | null;
   metadata?: (MetadataFilter | null)[] | null;
+  categorySlugs?: (string | null)[] | null;
   price?: PriceRangeInput | null;
   minimalPrice?: PriceRangeInput | null;
   productTypes?: (string | null)[] | null;
