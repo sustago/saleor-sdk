@@ -51,6 +51,10 @@ export interface ProductDetails_product_attributes_values {
    * Name of a value displayed in the interface.
    */
   name: string | null;
+  /**
+   * Internal representation of a value (unique per attribute).
+   */
+  slug: string | null;
 }
 
 export interface ProductDetails_product_attributes {
@@ -311,6 +315,10 @@ export interface ProductDetails_product_category_products_edges_node_attributes_
    * Name of a value displayed in the interface.
    */
   name: string | null;
+  /**
+   * Internal representation of a value (unique per attribute).
+   */
+  slug: string | null;
 }
 
 export interface ProductDetails_product_category_products_edges_node_attributes {
