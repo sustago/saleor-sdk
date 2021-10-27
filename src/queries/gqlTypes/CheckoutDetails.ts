@@ -371,6 +371,18 @@ export interface CheckoutDetails_checkout_lines_variant_pricing {
   price: CheckoutDetails_checkout_lines_variant_pricing_price | null;
 }
 
+export interface CheckoutDetails_checkout_lines_variant_attributes_attribute_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface CheckoutDetails_checkout_lines_variant_attributes_attribute {
   __typename: "Attribute";
   /**
@@ -381,6 +393,14 @@ export interface CheckoutDetails_checkout_lines_variant_attributes_attribute {
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  /**
+   * Internal representation of an attribute name.
+   */
+  slug: string | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (CheckoutDetails_checkout_lines_variant_attributes_attribute_metadata | null)[];
 }
 
 export interface CheckoutDetails_checkout_lines_variant_attributes_values {
@@ -397,6 +417,10 @@ export interface CheckoutDetails_checkout_lines_variant_attributes_values {
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  /**
+   * Internal representation of a value (unique per attribute).
+   */
+  slug: string | null;
 }
 
 export interface CheckoutDetails_checkout_lines_variant_attributes {

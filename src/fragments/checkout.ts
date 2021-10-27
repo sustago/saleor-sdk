@@ -55,11 +55,17 @@ export const checkoutProductVariantFragment = gql`
       attribute {
         id
         name
+        slug
+        metadata {
+          key
+          value
+        }
       }
       values {
         id
         name
         value: name
+        slug
       }
     }
     product {

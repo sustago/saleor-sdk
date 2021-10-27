@@ -725,6 +725,18 @@ export interface ProductDetails_variants_pricing {
   price: ProductDetails_variants_pricing_price | null;
 }
 
+export interface ProductDetails_variants_attributes_attribute_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface ProductDetails_variants_attributes_attribute {
   __typename: "Attribute";
   /**
@@ -739,6 +751,10 @@ export interface ProductDetails_variants_attributes_attribute {
    * Internal representation of an attribute name.
    */
   slug: string | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (ProductDetails_variants_attributes_attribute_metadata | null)[];
 }
 
 export interface ProductDetails_variants_attributes_values {
@@ -755,6 +771,10 @@ export interface ProductDetails_variants_attributes_values {
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  /**
+   * Internal representation of a value (unique per attribute).
+   */
+  slug: string | null;
 }
 
 export interface ProductDetails_variants_attributes {

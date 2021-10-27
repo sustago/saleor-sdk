@@ -95,6 +95,18 @@ export interface CheckoutProductVariants_productVariants_edges_node_pricing {
   price: CheckoutProductVariants_productVariants_edges_node_pricing_price | null;
 }
 
+export interface CheckoutProductVariants_productVariants_edges_node_attributes_attribute_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface CheckoutProductVariants_productVariants_edges_node_attributes_attribute {
   __typename: "Attribute";
   /**
@@ -105,6 +117,14 @@ export interface CheckoutProductVariants_productVariants_edges_node_attributes_a
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  /**
+   * Internal representation of an attribute name.
+   */
+  slug: string | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (CheckoutProductVariants_productVariants_edges_node_attributes_attribute_metadata | null)[];
 }
 
 export interface CheckoutProductVariants_productVariants_edges_node_attributes_values {
@@ -121,6 +141,10 @@ export interface CheckoutProductVariants_productVariants_edges_node_attributes_v
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  /**
+   * Internal representation of a value (unique per attribute).
+   */
+  slug: string | null;
 }
 
 export interface CheckoutProductVariants_productVariants_edges_node_attributes {

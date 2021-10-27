@@ -373,6 +373,18 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_varian
   price: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_pricing_price | null;
 }
 
+export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_attributes_attribute_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_attributes_attribute {
   __typename: "Attribute";
   /**
@@ -383,6 +395,14 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_varian
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  /**
+   * Internal representation of an attribute name.
+   */
+  slug: string | null;
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_attributes_attribute_metadata | null)[];
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_attributes_values {
@@ -399,6 +419,10 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_varian
    * Name of a value displayed in the interface.
    */
   value: string | null;
+  /**
+   * Internal representation of a value (unique per attribute).
+   */
+  slug: string | null;
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_lines_variant_attributes {
