@@ -33,11 +33,11 @@ export const baseProductFragment = gql`
     attributes {
       ...SelectedAttributeFields
     }
-    thumbnail {
+    thumbnail(size: 483) {
       url
       alt
     }
-    thumbnail2x: thumbnail(size: 510) {
+    thumbnail2x: thumbnail(size: 966) {
       url
     }
   }

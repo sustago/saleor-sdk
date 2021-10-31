@@ -77,13 +77,13 @@ export interface OrdersByUser_me_orders_edges_node_lines_variant {
 export interface OrdersByUser_me_orders_edges_node_lines_thumbnail {
   __typename: "Image";
   /**
-   * Alt text for an image.
-   */
-  alt: string | null;
-  /**
    * The URL of the image.
    */
   url: string;
+  /**
+   * Alt text for an image.
+   */
+  alt: string | null;
 }
 
 export interface OrdersByUser_me_orders_edges_node_lines_thumbnail2x {

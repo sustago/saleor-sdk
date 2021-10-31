@@ -72,11 +72,11 @@ export const checkoutProductVariantFragment = gql`
       id
       name
       slug
-      thumbnail {
+      thumbnail(size: 483) {
         url
         alt
       }
-      thumbnail2x: thumbnail(size: 510) {
+      thumbnail2x: thumbnail(size: 966) {
         url
       }
       productType {
