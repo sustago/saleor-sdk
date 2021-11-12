@@ -758,6 +758,10 @@ export interface ProductDetails_variants_attributes_attribute {
    */
   name: string | null;
   /**
+   * The unit of attribute values.
+   */
+  unit: MeasurementUnitsEnum | null;
+  /**
    * Internal representation of an attribute name.
    */
   slug: string | null;

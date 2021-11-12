@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { MeasurementUnitsEnum } from "./../../gqlTypes/globalTypes";
+
 // ====================================================
 // GraphQL fragment: ProductVariantFields
 // ====================================================
@@ -133,6 +135,10 @@ export interface ProductVariantFields_attributes_attribute {
    * Name of an attribute displayed in the interface.
    */
   name: string | null;
+  /**
+   * The unit of attribute values.
+   */
+  unit: MeasurementUnitsEnum | null;
   /**
    * Internal representation of an attribute name.
    */
