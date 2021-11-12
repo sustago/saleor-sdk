@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ProductOrder, ProductFilterInput } from "./../../gqlTypes/globalTypes";
+import { ProductOrder, ProductFilterInput, MeasurementUnitsEnum } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL query operation: ProductList
@@ -35,6 +35,10 @@ export interface ProductList_products_edges_node_attributes_attribute {
    * Internal representation of an attribute name.
    */
   slug: string | null;
+  /**
+   * The unit of attribute values.
+   */
+  unit: MeasurementUnitsEnum | null;
   /**
    * List of public metadata items. Can be accessed without permissions.
    */

@@ -7,6 +7,7 @@ export const selectedAttributeFragment = gql`
       id
       name
       slug
+      unit
       metadata {
         key
         value

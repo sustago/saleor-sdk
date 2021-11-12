@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { MeasurementUnitsEnum } from "./../../gqlTypes/globalTypes";
+
 // ====================================================
 // GraphQL fragment: BaseProduct
 // ====================================================
@@ -33,6 +35,10 @@ export interface BaseProduct_attributes_attribute {
    * Internal representation of an attribute name.
    */
   slug: string | null;
+  /**
+   * The unit of attribute values.
+   */
+  unit: MeasurementUnitsEnum | null;
   /**
    * List of public metadata items. Can be accessed without permissions.
    */

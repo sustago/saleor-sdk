@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CountryCode, VariantAttributeScope } from "./../../gqlTypes/globalTypes";
+import { CountryCode, VariantAttributeScope, MeasurementUnitsEnum } from "./../../gqlTypes/globalTypes";
 
 // ====================================================
 // GraphQL query operation: ProductDetails
@@ -35,6 +35,10 @@ export interface ProductDetails_product_attributes_attribute {
    * Internal representation of an attribute name.
    */
   slug: string | null;
+  /**
+   * The unit of attribute values.
+   */
+  unit: MeasurementUnitsEnum | null;
   /**
    * List of public metadata items. Can be accessed without permissions.
    */
@@ -299,6 +303,10 @@ export interface ProductDetails_product_category_products_edges_node_attributes_
    * Internal representation of an attribute name.
    */
   slug: string | null;
+  /**
+   * The unit of attribute values.
+   */
+  unit: MeasurementUnitsEnum | null;
   /**
    * List of public metadata items. Can be accessed without permissions.
    */
