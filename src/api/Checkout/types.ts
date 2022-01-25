@@ -4,7 +4,7 @@ import {
   ICheckoutModelPrice,
   ICheckoutModelPriceValue,
   IPaymentCreditCard,
-} from "../../helpers/LocalStorageHandler";
+} from "../../helpers";
 
 export type IPrice = ICheckoutModelPrice | null | undefined;
 export type IPriceValue = ICheckoutModelPriceValue | null | undefined;
@@ -56,6 +56,7 @@ export interface ICheckout {
   shippingAddress?: IAddress | null;
   shippingMethod?: IShippingMethod | null;
   billingAddress?: IAddress | null;
+  discreteShipping?: boolean | null;
 }
 
 export enum FunctionErrorCheckoutTypes {

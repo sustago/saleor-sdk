@@ -1,9 +1,6 @@
 import { PaymentGateway } from "../../fragments/gqlTypes/PaymentGateway";
-import { ErrorListener } from "../../helpers";
-import {
-  ICheckoutModel,
-  IPaymentModel,
-} from "../../helpers/LocalStorageHandler";
+import { ErrorListener, ICheckoutModel, IPaymentModel } from "../../helpers";
+
 import { JobsManager } from "../../jobs";
 import { SaleorState, SaleorStateLoaded } from "../../state";
 import { StateItems } from "../../state/types";
@@ -81,9 +78,13 @@ export class SaleorCheckoutAPI extends ErrorListener {
           availableShippingMethods,
           shippingMethod,
           promoCodeDiscount,
+          metadata,
         } = checkout || {};
         this.checkout = {
           billingAddress,
+          discreteShipping: metadata
+            ?.filter(val => val?.key === "discrete_shipping")
+            ?.map(val => val?.value?.toLowerCase() === "true")?.[0],
           email,
           id,
           shippingAddress,
