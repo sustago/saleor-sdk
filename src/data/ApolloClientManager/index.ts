@@ -92,6 +92,10 @@ import {
   VerifySignInTokenInput,
   RefreshSignInTokenInput,
 } from "./types";
+import {
+  CheckoutDiscreteShippingUpdate,
+  CheckoutDiscreteShippingUpdateVariables,
+} from "../../mutations/gqlTypes/CheckoutDiscreteShippingUpdate";
 
 export class ApolloClientManager {
   private client: ApolloClient<any>;
@@ -818,6 +822,47 @@ export class ApolloClientManager {
     }
   };
 
+  setDiscreteShipping = async (
+    discreteShipping: boolean,
+    checkoutId: string
+  ) => {
+    try {
+      const { data, errors } = await this.client.mutate<
+        CheckoutDiscreteShippingUpdate,
+        CheckoutDiscreteShippingUpdateVariables
+      >({
+        mutation: CheckoutMutations.updateDiscreteShippingMutation,
+        variables: {
+          checkoutId,
+          discreteShipping,
+        },
+      });
+
+      if (errors?.length) {
+        return {
+          error: errors,
+        };
+      }
+      if (data?.checkoutDiscreteShippingUpdate?.errors.length) {
+        return {
+          error: data?.checkoutDiscreteShippingUpdate?.errors,
+        };
+      }
+      if (data?.checkoutDiscreteShippingUpdate?.checkout) {
+        return {
+          data: this.constructCheckoutModel(
+            data.checkoutDiscreteShippingUpdate.checkout
+          ),
+        };
+      }
+      return {};
+    } catch (error) {
+      return {
+        error,
+      };
+    }
+  };
+
   addPromoCode = async (promoCode: string, checkoutId: string) => {
     try {
       const { data, errors } = await this.client.mutate<
@@ -992,6 +1037,7 @@ export class ApolloClientManager {
     availablePaymentGateways,
     availableShippingMethods,
     shippingMethod,
+    metadata,
   }: Checkout): ICheckoutModel => ({
     availablePaymentGateways,
     availableShippingMethods: availableShippingMethods
@@ -1020,6 +1066,7 @@ export class ApolloClientManager {
           },
         };
       }),
+    metadata,
     promoCodeDiscount: {
       discount,
       discountName,

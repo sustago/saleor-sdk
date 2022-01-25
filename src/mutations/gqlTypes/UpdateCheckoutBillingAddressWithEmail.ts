@@ -583,6 +583,18 @@ export interface UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpd
   currencies: (string | null)[];
 }
 
+export interface UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpdate_checkout_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpdate_checkout {
   __typename: "Checkout";
   /**
@@ -635,6 +647,10 @@ export interface UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpd
    * List of available payment gateways.
    */
   availablePaymentGateways: UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpdate_checkout_availablePaymentGateways[];
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpdate_checkout_metadata | null)[];
 }
 
 export interface UpdateCheckoutBillingAddressWithEmail_checkoutBillingAddressUpdate {
@@ -1203,6 +1219,18 @@ export interface UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_check
   currencies: (string | null)[];
 }
 
+export interface UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_checkout_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_checkout {
   __typename: "Checkout";
   /**
@@ -1255,6 +1283,10 @@ export interface UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_check
    * List of available payment gateways.
    */
   availablePaymentGateways: UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_checkout_availablePaymentGateways[];
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_checkout_metadata | null)[];
 }
 
 export interface UpdateCheckoutBillingAddressWithEmail_checkoutEmailUpdate_errors {

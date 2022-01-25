@@ -142,6 +142,27 @@ export const updateCheckoutShippingMethodMutation = gql`
   }
 `;
 
+export const updateDiscreteShippingMutation = gql`
+  ${checkoutFragment}
+  ${checkoutErrorFragment}
+  mutation CheckoutDiscreteShippingUpdate(
+    $checkoutId: ID!
+    $discreteShipping: Boolean!
+  ) {
+    checkoutDiscreteShippingUpdate(
+      checkoutId: $checkoutId
+      discreteShipping: $discreteShipping
+    ) {
+      checkout {
+        ...Checkout
+      }
+      errors: checkoutErrors {
+        ...CheckoutError
+      }
+    }
+  }
+`;
+
 export const addCheckoutPromoCode = gql`
   ${checkoutFragment}
   ${checkoutErrorFragment}

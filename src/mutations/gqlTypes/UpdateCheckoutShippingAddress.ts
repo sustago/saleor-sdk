@@ -583,6 +583,18 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
   currencies: (string | null)[];
 }
 
+export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout {
   __typename: "Checkout";
   /**
@@ -635,6 +647,10 @@ export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_che
    * List of available payment gateways.
    */
   availablePaymentGateways: UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_availablePaymentGateways[];
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate_checkout_metadata | null)[];
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutShippingAddressUpdate {
@@ -1203,6 +1219,18 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_avai
   currencies: (string | null)[];
 }
 
+export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
   __typename: "Checkout";
   /**
@@ -1255,6 +1283,10 @@ export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout {
    * List of available payment gateways.
    */
   availablePaymentGateways: UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_availablePaymentGateways[];
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (UpdateCheckoutShippingAddress_checkoutEmailUpdate_checkout_metadata | null)[];
 }
 
 export interface UpdateCheckoutShippingAddress_checkoutEmailUpdate_errors {

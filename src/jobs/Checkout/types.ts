@@ -43,6 +43,11 @@ export interface SetShippingMethodJobInput {
   shippingMethodId: string;
 }
 
+export interface SetDiscreteShippingMethodJobInput {
+  checkoutId: string;
+  discreteShipping: boolean;
+}
+
 export interface AddPromoCodeJobInput {
   checkoutId: string;
   promoCode: string;

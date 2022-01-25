@@ -566,6 +566,18 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_availablePay
   currencies: (string | null)[];
 }
 
+export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout {
   __typename: "Checkout";
   /**
@@ -618,6 +630,10 @@ export interface AddCheckoutPromoCode_checkoutAddPromoCode_checkout {
    * List of available payment gateways.
    */
   availablePaymentGateways: AddCheckoutPromoCode_checkoutAddPromoCode_checkout_availablePaymentGateways[];
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (AddCheckoutPromoCode_checkoutAddPromoCode_checkout_metadata | null)[];
 }
 
 export interface AddCheckoutPromoCode_checkoutAddPromoCode_errors {

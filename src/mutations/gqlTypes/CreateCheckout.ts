@@ -583,6 +583,18 @@ export interface CreateCheckout_checkoutCreate_checkout_availablePaymentGateways
   currencies: (string | null)[];
 }
 
+export interface CreateCheckout_checkoutCreate_checkout_metadata {
+  __typename: "MetadataItem";
+  /**
+   * Key of a metadata item.
+   */
+  key: string;
+  /**
+   * Value of a metadata item.
+   */
+  value: string;
+}
+
 export interface CreateCheckout_checkoutCreate_checkout {
   __typename: "Checkout";
   /**
@@ -635,6 +647,10 @@ export interface CreateCheckout_checkoutCreate_checkout {
    * List of available payment gateways.
    */
   availablePaymentGateways: CreateCheckout_checkoutCreate_checkout_availablePaymentGateways[];
+  /**
+   * List of public metadata items. Can be accessed without permissions.
+   */
+  metadata: (CreateCheckout_checkoutCreate_checkout_metadata | null)[];
 }
 
 export interface CreateCheckout_checkoutCreate {

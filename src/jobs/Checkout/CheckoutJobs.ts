@@ -5,6 +5,7 @@ import {
 import { ApolloClientManager } from "../../data/ApolloClientManager";
 import { LocalStorageHandler } from "../../helpers/LocalStorageHandler";
 import { JobRunResponse } from "../types";
+import { JobsHandler } from "../JobsHandler";
 import {
   CompleteCheckoutJobInput,
   CreatePaymentJobInput,
@@ -16,8 +17,8 @@ import {
   SetShippingAddressJobInput,
   SetBillingAddressJobInput,
   SetBillingAddressWithEmailJobInput,
+  SetDiscreteShippingMethodJobInput,
 } from "./types";
-import { JobsHandler } from "../JobsHandler";
 
 export type PromiseCheckoutJobRunResponse = Promise<
   JobRunResponse<DataErrorCheckoutTypes, FunctionErrorCheckoutTypes>
@@ -234,6 +235,33 @@ class CheckoutJobs extends JobsHandler<{}> {
       ...checkout,
       promoCodeDiscount: data?.promoCodeDiscount,
       shippingMethod: data?.shippingMethod,
+    });
+    return { data };
+  };
+
+  setDiscreteShipping = async ({
+    checkoutId,
+    discreteShipping,
+  }: SetDiscreteShippingMethodJobInput): PromiseCheckoutJobRunResponse => {
+    const checkout = LocalStorageHandler.getCheckout();
+
+    const { data, error } = await this.apolloClientManager.setDiscreteShipping(
+      discreteShipping,
+      checkoutId
+    );
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorCheckoutTypes.SET_DISCRETE_SHIPPING,
+        },
+      };
+    }
+
+    this.localStorageHandler.setCheckout({
+      ...checkout,
+      metadata: data?.metadata,
     });
     return { data };
   };

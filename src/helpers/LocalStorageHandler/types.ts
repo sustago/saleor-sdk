@@ -103,6 +103,11 @@ export interface IPaymentCreditCard {
   expYear?: number | null;
 }
 
+export interface IMetadata {
+  key: string;
+  value: string;
+}
+
 export interface ICheckoutModel {
   id?: string;
   token?: any;
@@ -117,6 +122,7 @@ export interface ICheckoutModel {
   availableShippingMethods?: Checkout_availableShippingMethods[];
   availablePaymentGateways?: Checkout_availablePaymentGateways[];
   shippingMethod?: ICheckoutModelShippingMethod | null;
+  metadata?: (IMetadata | null)[];
 }
 
 export interface IPaymentModel {
