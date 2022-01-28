@@ -1,5 +1,5 @@
 import { ICreditCard } from "../../api/Checkout/types";
-import { ICheckoutAddress } from "../../helpers/LocalStorageHandler";
+import { ICheckoutAddress } from "../../helpers";
 
 export interface ProvideCheckoutJobInput {
   isUserSignedIn: boolean;
@@ -46,6 +46,11 @@ export interface SetShippingMethodJobInput {
 export interface SetDiscreteShippingMethodJobInput {
   checkoutId: string;
   discreteShipping: boolean;
+}
+
+export interface SetIncludeMerchJobInput {
+  checkoutId: string;
+  includeMerch: boolean;
 }
 
 export interface AddPromoCodeJobInput {

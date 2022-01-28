@@ -57,6 +57,7 @@ export interface ICheckout {
   shippingMethod?: IShippingMethod | null;
   billingAddress?: IAddress | null;
   discreteShipping?: boolean | null;
+  includeMerch?: boolean | null;
 }
 
 export enum FunctionErrorCheckoutTypes {
@@ -69,6 +70,7 @@ export enum DataErrorCheckoutTypes {
   "SET_BILLING_ADDRESS",
   "SET_SHIPPING_METHOD",
   "SET_DISCRETE_SHIPPING",
+  "SET_INCLUDE_MERCH",
   "ADD_PROMO_CODE",
   "REMOVE_PROMO_CODE",
   "CREATE_PAYMENT",

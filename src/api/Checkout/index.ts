@@ -87,6 +87,9 @@ export class SaleorCheckoutAPI extends ErrorListener {
             ?.map(val => val?.value?.toLowerCase() === "true")?.[0],
           email,
           id,
+          includeMerch: metadata
+            ?.filter(val => val?.key === "include_merch")
+            ?.map(val => val?.value?.toLowerCase() === "true")?.[0],
           shippingAddress,
           shippingMethod,
           token,

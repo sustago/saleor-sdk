@@ -2,8 +2,8 @@ import {
   DataErrorCheckoutTypes,
   FunctionErrorCheckoutTypes,
 } from "../../api/Checkout/types";
-import { ApolloClientManager } from "../../data/ApolloClientManager";
-import { LocalStorageHandler } from "../../helpers/LocalStorageHandler";
+import { ApolloClientManager } from "../../data";
+import { LocalStorageHandler } from "../../helpers";
 import { JobRunResponse } from "../types";
 import { JobsHandler } from "../JobsHandler";
 import {
@@ -18,6 +18,7 @@ import {
   SetBillingAddressJobInput,
   SetBillingAddressWithEmailJobInput,
   SetDiscreteShippingMethodJobInput,
+  SetIncludeMerchJobInput,
 } from "./types";
 
 export type PromiseCheckoutJobRunResponse = Promise<
@@ -255,6 +256,33 @@ class CheckoutJobs extends JobsHandler<{}> {
         dataError: {
           error,
           type: DataErrorCheckoutTypes.SET_DISCRETE_SHIPPING,
+        },
+      };
+    }
+
+    this.localStorageHandler.setCheckout({
+      ...checkout,
+      metadata: data?.metadata,
+    });
+    return { data };
+  };
+
+  setIncludeMerch = async ({
+    checkoutId,
+    includeMerch,
+  }: SetIncludeMerchJobInput): PromiseCheckoutJobRunResponse => {
+    const checkout = LocalStorageHandler.getCheckout();
+
+    const { data, error } = await this.apolloClientManager.setIncludeMerch(
+      includeMerch,
+      checkoutId
+    );
+
+    if (error) {
+      return {
+        dataError: {
+          error,
+          type: DataErrorCheckoutTypes.SET_INCLUDE_MERCH,
         },
       };
     }

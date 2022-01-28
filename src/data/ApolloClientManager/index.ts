@@ -9,7 +9,7 @@ import {
   ICheckoutModel,
   ICheckoutModelLine,
   IPaymentModel,
-} from "../../helpers/LocalStorageHandler";
+} from "../../helpers";
 import * as AuthMutations from "../../mutations/auth";
 import * as UserMutations from "../../mutations/user";
 import * as CheckoutMutations from "../../mutations/checkout";
@@ -96,6 +96,10 @@ import {
   CheckoutDiscreteShippingUpdate,
   CheckoutDiscreteShippingUpdateVariables,
 } from "../../mutations/gqlTypes/CheckoutDiscreteShippingUpdate";
+import {
+  CheckoutIncludeMerchUpdate,
+  CheckoutIncludeMerchUpdateVariables,
+} from "../../mutations/gqlTypes/CheckoutIncludeMerchUpdate";
 
 export class ApolloClientManager {
   private client: ApolloClient<any>;
@@ -852,6 +856,44 @@ export class ApolloClientManager {
         return {
           data: this.constructCheckoutModel(
             data.checkoutDiscreteShippingUpdate.checkout
+          ),
+        };
+      }
+      return {};
+    } catch (error) {
+      return {
+        error,
+      };
+    }
+  };
+
+  setIncludeMerch = async (includeMerch: boolean, checkoutId: string) => {
+    try {
+      const { data, errors } = await this.client.mutate<
+        CheckoutIncludeMerchUpdate,
+        CheckoutIncludeMerchUpdateVariables
+      >({
+        mutation: CheckoutMutations.updateIncludeMerchMutation,
+        variables: {
+          checkoutId,
+          includeMerch,
+        },
+      });
+
+      if (errors?.length) {
+        return {
+          error: errors,
+        };
+      }
+      if (data?.checkoutIncludeMerchUpdate?.errors.length) {
+        return {
+          error: data?.checkoutIncludeMerchUpdate?.errors,
+        };
+      }
+      if (data?.checkoutIncludeMerchUpdate?.checkout) {
+        return {
+          data: this.constructCheckoutModel(
+            data.checkoutIncludeMerchUpdate.checkout
           ),
         };
       }

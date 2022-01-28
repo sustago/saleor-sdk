@@ -163,6 +163,27 @@ export const updateDiscreteShippingMutation = gql`
   }
 `;
 
+export const updateIncludeMerchMutation = gql`
+  ${checkoutFragment}
+  ${checkoutErrorFragment}
+  mutation CheckoutIncludeMerchUpdate(
+    $checkoutId: ID!
+    $includeMerch: Boolean!
+  ) {
+    checkoutIncludeMerchUpdate(
+      checkoutId: $checkoutId
+      includeMerch: $includeMerch
+    ) {
+      checkout {
+        ...Checkout
+      }
+      errors: checkoutErrors {
+        ...CheckoutError
+      }
+    }
+  }
+`;
+
 export const addCheckoutPromoCode = gql`
   ${checkoutFragment}
   ${checkoutErrorFragment}
