@@ -383,6 +383,35 @@ export class SaleorCheckoutAPI extends ErrorListener {
     };
   };
 
+  setIncludeMerch = async (includeMerch: boolean): CheckoutResponse => {
+    const checkoutId = this.saleorState.checkout?.id;
+
+    if (checkoutId) {
+      const { data, dataError } = await this.jobsManager.run(
+        "checkout",
+        "setIncludeMerch",
+        {
+          checkoutId,
+          includeMerch,
+        }
+      );
+      return {
+        data,
+        dataError,
+        pending: false,
+      };
+    }
+    return {
+      functionError: {
+        error: new Error(
+          "You need to set shipping address before setting shipping method."
+        ),
+        type: FunctionErrorCheckoutTypes.SHIPPING_ADDRESS_NOT_SET,
+      },
+      pending: false,
+    };
+  };
+
   addPromoCode = async (promoCode: string): CheckoutResponse => {
     const checkoutId = this.saleorState.checkout?.id;
 
