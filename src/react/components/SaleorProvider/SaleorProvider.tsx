@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
+import { ApolloProvider } from "react-apollo";
 import { SaleorManager } from "../../..";
 import { SaleorContext, SaleorContextType } from "../../context";
 
@@ -12,23 +13,18 @@ const SaleorProvider: React.FC<IProps> = ({
 }: IProps) => {
   const [context, setContext] = useState<SaleorContextType | null>(null);
 
-  const getSaleorApiAndClient = async (manager: SaleorManager) => {
-    const api = manager.connect(saleorAPI => {
-      if (saleorAPI) {
-        setContext({ api: saleorAPI, config });
-      }
-    });
-    setContext({ api, config });
-  };
-
-  useEffect(() => {
-    const manager = new SaleorManager(config, apolloConfig);
-
-    getSaleorApiAndClient(manager);
-  }, []);
+  const manager = new SaleorManager(config, apolloConfig);
+  const { api, apolloClient } = manager.connect(saleorAPI => {
+    if (saleorAPI) {
+      setContext({ api: saleorAPI, config });
+    }
+  });
+  setContext({ api, config });
 
   return (
-    <SaleorContext.Provider value={context}>{children}</SaleorContext.Provider>
+    <SaleorContext.Provider value={context}>
+      <ApolloProvider client={apolloClient}>{children}</ApolloProvider>
+    </SaleorContext.Provider>
   );
 };
 

@@ -14,6 +14,17 @@ interface CreateAPIResult {
   apolloClient: ApolloClient<any>;
 }
 
+export interface ConnectResult {
+  /**
+   * Saleor API.
+   */
+  api: SaleorAPI;
+  /**
+   * Apollo client used by Saleor API.
+   */
+  apolloClient: ApolloClient<any>;
+}
+
 export class SaleorManager {
   public config: Config;
 
@@ -47,7 +58,7 @@ export class SaleorManager {
    * Use this method to obtain current API and optionally listen to its update on occured changes within it.
    * @param apiChangeListener Function called to get an API and called on every API update.
    */
-  connect(apiChangeListener?: (api?: SaleorAPI) => any): SaleorAPI {
+  connect(apiChangeListener?: (api?: SaleorAPI) => any): ConnectResult {
     if (!this.api || !this.apiProxy || !this.apolloClient) {
       const { api, apiProxy, apolloClient } = SaleorManager.createApi(
         this.config,
@@ -65,7 +76,7 @@ export class SaleorManager {
       this.apiChangeListener = apiChangeListener;
     }
 
-    return this.api;
+    return { api: this.api, apolloClient: this.apolloClient };
   }
 
   private static createApi = (
