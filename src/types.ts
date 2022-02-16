@@ -65,10 +65,6 @@ export interface ApolloConfigInput {
    */
   cache?: ApolloCache<any>;
   /**
-   * Determines if the cache has to be persisted in local storage. True by default.
-   */
-  persistCache?: boolean;
-  /**
    * Custom list of links to be used by Apollo client. By default preconfigured links are created automatically.
    */
   links?: ApolloLink[];
